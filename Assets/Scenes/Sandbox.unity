@@ -2660,6 +2660,41 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 3644134488891483125, guid: 07d1863e4ce970a4fb0a7fc27f3361e4,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3644134488891483125, guid: 07d1863e4ce970a4fb0a7fc27f3361e4,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3644134488891483125, guid: 07d1863e4ce970a4fb0a7fc27f3361e4,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3644134488891483125, guid: 07d1863e4ce970a4fb0a7fc27f3361e4,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3644134488891483125, guid: 07d1863e4ce970a4fb0a7fc27f3361e4,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3644134488891483125, guid: 07d1863e4ce970a4fb0a7fc27f3361e4,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3644134488891483125, guid: 07d1863e4ce970a4fb0a7fc27f3361e4,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3739820378350374961, guid: 07d1863e4ce970a4fb0a7fc27f3361e4,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -2669,6 +2704,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5752927589538699256, guid: 07d1863e4ce970a4fb0a7fc27f3361e4,
+        type: 3}
+      propertyPath: m_Name
+      value: Muzzle Flash VFX
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 07d1863e4ce970a4fb0a7fc27f3361e4, type: 3}
