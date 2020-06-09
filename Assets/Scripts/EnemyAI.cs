@@ -6,17 +6,23 @@ using UnityEngine.AI;
 public class EnemyAI : MonoBehaviour
 {
 	//Config parameters
-	[SerializeField] Transform target;
 	[SerializeField] float chaseRange = 5f;
+	[SerializeField] float turnSpeed = 1f;
 
 	//Cache
+	PlayerHealth target;
 	NavMeshAgent navMeshAgent;
 	float distanceToTarget = Mathf.Infinity;
+	Animator animator;
+
+	//States
 	bool isProvoked = false;
 
 	void Start()
 	{
+		target = FindObjectOfType<PlayerHealth>();
 		navMeshAgent = GetComponent<NavMeshAgent>();
+		animator = GetComponent<Animator>();
 	}
 
 	void Update()
@@ -26,8 +32,7 @@ public class EnemyAI : MonoBehaviour
 
 	private void CheckProvocation()
 	{
-		distanceToTarget = Vector3.Distance(target.position, transform.position);
-		print(distanceToTarget);
+		distanceToTarget = Vector3.Distance(target.transform.position, transform.position);
 
 		if(isProvoked)
 		{
@@ -41,6 +46,8 @@ public class EnemyAI : MonoBehaviour
 
 	private void EngageTarget()
 	{
+		FaceTarget();
+
 		if (distanceToTarget > navMeshAgent.stoppingDistance)
 		{
 			ChaseTarget();
@@ -53,12 +60,24 @@ public class EnemyAI : MonoBehaviour
 
 	private void ChaseTarget()
 	{
-		navMeshAgent.SetDestination(target.position);
+		animator.SetBool("isAttacking", false);
+		animator.SetTrigger("isMoving");
+		navMeshAgent.SetDestination(target.transform.position);
 	}
 
-	private static void AttackTarget()
+	private void AttackTarget()
 	{
-		print("Attacking target");
+		animator.SetBool("isAttacking", true);
+	}
+
+	private void FaceTarget()
+	{
+		//Gets the direction enemy needs to face
+		Vector3 direction = (target.transform.position - transform.position); 
+		//Creates the rotation with specified x and y taken from direction
+		Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
+		//Actually rotates enemy
+		transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * turnSpeed);
 	}
 
 	private void OnDrawGizmosSelected()
