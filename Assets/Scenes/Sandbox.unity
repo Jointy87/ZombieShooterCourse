@@ -3467,6 +3467,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3325640218414547071, guid: 07d1863e4ce970a4fb0a7fc27f3361e4,
+        type: 3}
+      propertyPath: mouseLook.XSensitivity
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3325640218414547071, guid: 07d1863e4ce970a4fb0a7fc27f3361e4,
+        type: 3}
+      propertyPath: mouseLook.YSensitivity
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 3325640218423949243, guid: 07d1863e4ce970a4fb0a7fc27f3361e4,
         type: 3}
       propertyPath: near clip plane

@@ -107,8 +107,8 @@ MonoBehaviour:
   cam: {fileID: 3325640218423949243}
   movementSettings:
     ForwardSpeed: 8
-    BackwardSpeed: 4
-    StrafeSpeed: 4
+    BackwardSpeed: 6
+    StrafeSpeed: 6
     RunMultiplier: 2
     RunKey: 304
     JumpForce: 50
@@ -338,6 +338,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5642209116249167658}
+  - component: {fileID: 6983176443508155531}
   m_Layer: 0
   m_Name: Weapons
   m_TagString: Untagged
@@ -360,6 +361,18 @@ Transform:
   m_Father: {fileID: 3325640218424502715}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6983176443508155531
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6456132927463843297}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28115b7c0886536489d6f6d87d9261ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1407504906770716023
 PrefabInstance:
   m_ObjectHideFlags: 0
