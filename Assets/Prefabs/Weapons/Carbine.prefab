@@ -335,6 +335,7 @@ MonoBehaviour:
   camera: {fileID: 0}
   fpController: {fileID: 0}
   ammoHandler: {fileID: 0}
+  ammoType: 2
   zoomFOV: 10
   zoomMouseSensitivity: 1
   shootRange: 50

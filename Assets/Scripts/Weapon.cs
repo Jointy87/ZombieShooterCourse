@@ -10,6 +10,7 @@ public class Weapon : MonoBehaviour
 	[SerializeField] Camera camera;
 	[SerializeField] RigidbodyFirstPersonController fpController;
 	[SerializeField] AmmoHandler ammoHandler;
+	[SerializeField] AmmoType ammoType;
 	[Header("Aim Down Sights")]
 	[Range(5f, 60f)][SerializeField] float zoomFOV = 40f;
 	[SerializeField] float zoomMouseSensitivity;
@@ -33,6 +34,10 @@ public class Weapon : MonoBehaviour
 		originalMouseSensX = fpController.mouseLook.XSensitivity;
 		originalMouseSensY = fpController.mouseLook.YSensitivity;
 	}
+	private void OnEnable()
+	{
+		canShoot = true;
+	}
 
 	void Update()
 	{
@@ -46,7 +51,7 @@ public class Weapon : MonoBehaviour
 
 	private void AimDownSights()
 	{
-		if(Input.GetButton("Fire2"))
+		if (Input.GetButton("Fire2"))
 		{
 			camera.fieldOfView = zoomFOV;
 			fpController.mouseLook.XSensitivity = zoomMouseSensitivity;
@@ -62,12 +67,12 @@ public class Weapon : MonoBehaviour
 
 	IEnumerator Shoot()
 	{
-		if (ammoHandler.FetchAmmoAmount() > 0)
+		if (ammoHandler.FetchAmmoAmount(ammoType) > 0)
 		{
 			canShoot = false;
 			PlayMuzzleFlash();
 			ProcessRaycast();
-			ammoHandler.ReduceAmmoAmount();
+			ammoHandler.ReduceAmmoAmount(ammoType);
 		}
 		else
 		{
