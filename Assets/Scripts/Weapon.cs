@@ -6,25 +6,30 @@ using UnityStandardAssets.Characters.FirstPerson;
 public class Weapon : MonoBehaviour
 {
 	//Config parameter
+	[Header("General")]
 	[SerializeField] Camera camera;
-	[Range(30f, 60f)][SerializeField] float zoomFOV = 40f;
+	[SerializeField] RigidbodyFirstPersonController fpController;
+	[SerializeField] AmmoHandler ammoHandler;
+	[Header("Aim Down Sights")]
+	[Range(5f, 60f)][SerializeField] float zoomFOV = 40f;
 	[SerializeField] float zoomMouseSensitivity;
+	[Header("Shooting values")]
 	[SerializeField] float shootRange;
 	[SerializeField] float bulletDamage;
-	[SerializeField] AmmoHandler ammoHandler;
+	[SerializeField] float shootInterval;
+	[Header("FX")]
 	[SerializeField] ParticleSystem muzzleFlash;
 	[SerializeField] GameObject hitVFX;
 
 	//Cache
 	float camStartFOV;
-	RigidbodyFirstPersonController fpController;
 	float originalMouseSensX;
 	float originalMouseSensY;
+	bool canShoot = true;
 
 	private void Start()
 	{
 		camStartFOV = camera.fieldOfView;
-		fpController = FindObjectOfType<RigidbodyFirstPersonController>();
 		originalMouseSensX = fpController.mouseLook.XSensitivity;
 		originalMouseSensY = fpController.mouseLook.YSensitivity;
 	}
@@ -32,7 +37,11 @@ public class Weapon : MonoBehaviour
 	void Update()
 	{
 		AimDownSights();
-		Shoot();
+
+		if (Input.GetButtonDown("Fire1") && canShoot == true)
+		{
+			StartCoroutine(Shoot());
+		}
 	}
 
 	private void AimDownSights()
@@ -51,23 +60,23 @@ public class Weapon : MonoBehaviour
 		}
 	}
 
-	private void Shoot()
+	IEnumerator Shoot()
 	{
-		if (Input.GetButtonDown("Fire1"))
+		if (ammoHandler.FetchAmmoAmount() > 0)
 		{
-			if(ammoHandler.FetchAmmoAmount() > 0)
-			{
-				PlayMuzzleFlash();
-				ProcessRaycast();
-				ammoHandler.ReduceAmmoAmount();
-			}
-			else
-			{
-				print("Out of ammo");
-				//play clicking sound
-			}
-
+			canShoot = false;
+			PlayMuzzleFlash();
+			ProcessRaycast();
+			ammoHandler.ReduceAmmoAmount();
 		}
+		else
+		{
+			print("Out of ammo");
+			//play clicking sound
+		}
+
+		yield return new WaitForSeconds(shootInterval);
+		canShoot = true;
 	}
 
 	private void PlayMuzzleFlash()

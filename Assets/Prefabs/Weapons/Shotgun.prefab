@@ -248,7 +248,7 @@ GameObject:
   - component: {fileID: 2337074158999389510}
   - component: {fileID: 6315096706339028208}
   m_Layer: 0
-  m_Name: Carbine
+  m_Name: Shotgun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -333,10 +333,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   camera: {fileID: 0}
-  zoomFOV: 35
+  fpController: {fileID: 0}
+  ammoHandler: {fileID: 0}
+  zoomFOV: 50
   zoomMouseSensitivity: 2
-  shootRange: 50
-  bulletDamage: 10
+  shootRange: 5
+  bulletDamage: 50
+  shootInterval: 1.5
   muzzleFlash: {fileID: 4671807985372364598}
   hitVFX: {fileID: 4921947919795720901, guid: 57c8efcd6f4b89a49aab3e1baa382e6a, type: 3}
 --- !u!1 &2337074158997199752

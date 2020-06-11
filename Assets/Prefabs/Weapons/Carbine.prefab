@@ -333,10 +333,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   camera: {fileID: 0}
-  zoomFOV: 35
-  zoomMouseSensitivity: 2
+  fpController: {fileID: 0}
+  ammoHandler: {fileID: 0}
+  zoomFOV: 10
+  zoomMouseSensitivity: 1
   shootRange: 50
-  bulletDamage: 10
+  bulletDamage: 40
+  shootInterval: 3
   muzzleFlash: {fileID: 4671807985372364598}
   hitVFX: {fileID: 4921947919795720901, guid: 57c8efcd6f4b89a49aab3e1baa382e6a, type: 3}
 --- !u!1 &2337074158997199752
