@@ -333,6 +333,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   camera: {fileID: 0}
+  zoomFOV: 35
+  zoomMouseSensitivity: 2
   shootRange: 50
   bulletDamage: 10
   muzzleFlash: {fileID: 4671807985372364598}

@@ -1,28 +1,73 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityStandardAssets.Characters.FirstPerson;
 
 public class Weapon : MonoBehaviour
 {
 	//Config parameter
 	[SerializeField] Camera camera;
+	[Range(30f, 60f)][SerializeField] float zoomFOV = 40f;
+	[SerializeField] float zoomMouseSensitivity;
 	[SerializeField] float shootRange;
 	[SerializeField] float bulletDamage;
+	[SerializeField] AmmoHandler ammoHandler;
 	[SerializeField] ParticleSystem muzzleFlash;
 	[SerializeField] GameObject hitVFX;
 
+	//Cache
+	float camStartFOV;
+	RigidbodyFirstPersonController fpController;
+	float originalMouseSensX;
+	float originalMouseSensY;
+
+	private void Start()
+	{
+		camStartFOV = camera.fieldOfView;
+		fpController = FindObjectOfType<RigidbodyFirstPersonController>();
+		originalMouseSensX = fpController.mouseLook.XSensitivity;
+		originalMouseSensY = fpController.mouseLook.YSensitivity;
+	}
+
 	void Update()
 	{
-		if(Input.GetButtonDown("Fire1"))
+		AimDownSights();
+		Shoot();
+	}
+
+	private void AimDownSights()
+	{
+		if(Input.GetButton("Fire2"))
 		{
-			Shoot();
+			camera.fieldOfView = zoomFOV;
+			fpController.mouseLook.XSensitivity = zoomMouseSensitivity;
+			fpController.mouseLook.YSensitivity = zoomMouseSensitivity;
+		}
+		else
+		{
+			camera.fieldOfView = camStartFOV;
+			fpController.mouseLook.XSensitivity = originalMouseSensX;
+			fpController.mouseLook.YSensitivity = originalMouseSensY;
 		}
 	}
 
 	private void Shoot()
 	{
-		PlayMuzzleFlash();
-		ProcessRaycast();
+		if (Input.GetButtonDown("Fire1"))
+		{
+			if(ammoHandler.FetchAmmoAmount() > 0)
+			{
+				PlayMuzzleFlash();
+				ProcessRaycast();
+				ammoHandler.ReduceAmmoAmount();
+			}
+			else
+			{
+				print("Out of ammo");
+				//play clicking sound
+			}
+
+		}
 	}
 
 	private void PlayMuzzleFlash()
@@ -47,4 +92,5 @@ public class Weapon : MonoBehaviour
 		GameObject hitFX = Instantiate(hitVFX, target.point, Quaternion.LookRotation(target.normal));
 		Destroy(hitFX, 0.5f);
 	}
+
 }
