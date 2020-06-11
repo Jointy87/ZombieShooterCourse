@@ -39,6 +39,11 @@ public class Weapon : MonoBehaviour
 		canShoot = true;
 	}
 
+	private void OnDisable()
+	{
+		ZoomOut();
+	}
+
 	void Update()
 	{
 		AimDownSights();
@@ -53,16 +58,26 @@ public class Weapon : MonoBehaviour
 	{
 		if (Input.GetButton("Fire2"))
 		{
-			camera.fieldOfView = zoomFOV;
-			fpController.mouseLook.XSensitivity = zoomMouseSensitivity;
-			fpController.mouseLook.YSensitivity = zoomMouseSensitivity;
+			ZoomIn();
 		}
 		else
 		{
-			camera.fieldOfView = camStartFOV;
-			fpController.mouseLook.XSensitivity = originalMouseSensX;
-			fpController.mouseLook.YSensitivity = originalMouseSensY;
+			ZoomOut();
 		}
+	}
+
+	private void ZoomIn()
+	{
+		camera.fieldOfView = zoomFOV;
+		fpController.mouseLook.XSensitivity = zoomMouseSensitivity;
+		fpController.mouseLook.YSensitivity = zoomMouseSensitivity;
+	}
+
+	private void ZoomOut()
+	{
+		camera.fieldOfView = camStartFOV;
+		fpController.mouseLook.XSensitivity = originalMouseSensX;
+		fpController.mouseLook.YSensitivity = originalMouseSensY;
 	}
 
 	IEnumerator Shoot()

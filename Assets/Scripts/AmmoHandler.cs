@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class AmmoHandler : MonoBehaviour
 {
@@ -14,16 +12,20 @@ public class AmmoHandler : MonoBehaviour
 		public int ammoAmount;
 	}
 
-	public int FetchAmmoAmount(AmmoType ammoType)
+	public int FetchAmmoAmount(AmmoType type)
 	{
-		return GetAmmoSlot(ammoType).ammoAmount;
+		return GetAmmoSlot(type).ammoAmount;
 	}
 
-	public void ReduceAmmoAmount(AmmoType ammoType)
+	public void ReduceAmmoAmount(AmmoType typeToReduce)
 	{
-		GetAmmoSlot(ammoType).ammoAmount--;
+		GetAmmoSlot(typeToReduce).ammoAmount--;
 	}
-	
+	public void AddToAmmo(AmmoType typeToAdd, int amountToAdd)
+	{
+		GetAmmoSlot(typeToAdd).ammoAmount += amountToAdd;
+	}
+
 	private AmmoSlot GetAmmoSlot(AmmoType ammoType)
 	{
 		foreach(AmmoSlot slot in ammoSlots)

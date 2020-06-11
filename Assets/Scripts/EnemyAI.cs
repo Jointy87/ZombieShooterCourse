@@ -14,6 +14,7 @@ public class EnemyAI : MonoBehaviour
 	NavMeshAgent navMeshAgent;
 	float distanceToTarget = Mathf.Infinity;
 	Animator animator;
+	EnemyHealth ourHealth;
 
 	//States
 	bool isProvoked = false;
@@ -23,11 +24,22 @@ public class EnemyAI : MonoBehaviour
 		target = FindObjectOfType<PlayerHealth>();
 		navMeshAgent = GetComponent<NavMeshAgent>();
 		animator = GetComponent<Animator>();
+		ourHealth = GetComponent<EnemyHealth>();
 	}
 
 	void Update()
 	{
+		CheckIfKilled();
 		CheckProvocation();
+	}
+
+	private void CheckIfKilled()
+	{
+		if (ourHealth.FetchIsKilled())
+		{
+			enabled = false;
+			navMeshAgent.enabled = false;
+		}
 	}
 
 	private void CheckProvocation()

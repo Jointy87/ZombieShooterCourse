@@ -4,7 +4,17 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
+	//Config parameters
 	[SerializeField] float healthPoints;
+
+	//Cache
+	bool isKilled = false;
+
+	public bool FetchIsKilled()
+	{
+		return isKilled;
+	}
+
 	public void TakeDamage(float bulletDMG)
 	{
 		BroadcastMessage("OnDamageTaken");
@@ -12,7 +22,14 @@ public class EnemyHealth : MonoBehaviour
 
 		if (healthPoints <= 0)
 		{
-			Destroy(gameObject);
+			if (isKilled) { return; }
+			Die();
 		}
+	}
+
+	private void Die()
+	{
+		isKilled = true;
+		GetComponent<Animator>().SetTrigger("isKilled");
 	}
 }
