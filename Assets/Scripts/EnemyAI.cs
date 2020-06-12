@@ -74,7 +74,12 @@ public class EnemyAI : MonoBehaviour
 	{
 		animator.SetBool("isAttacking", false);
 		animator.SetTrigger("isMoving");
-		navMeshAgent.SetDestination(target.transform.position);
+
+		if(!navMeshAgent) { return; }
+		else
+		{
+			navMeshAgent.SetDestination(target.transform.position);
+		}
 	}
 
 	private void AttackTarget()

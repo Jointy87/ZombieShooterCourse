@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityStandardAssets.Characters.FirstPerson;
 
@@ -11,6 +12,7 @@ public class Weapon : MonoBehaviour
 	[SerializeField] RigidbodyFirstPersonController fpController;
 	[SerializeField] AmmoHandler ammoHandler;
 	[SerializeField] AmmoType ammoType;
+	[SerializeField] TextMeshProUGUI ammoText;
 	[Header("Aim Down Sights")]
 	[Range(5f, 60f)][SerializeField] float zoomFOV = 40f;
 	[SerializeField] float zoomMouseSensitivity;
@@ -46,6 +48,8 @@ public class Weapon : MonoBehaviour
 
 	void Update()
 	{
+		ammoText.text = ammoHandler.FetchAmmoAmount(ammoType).ToString();
+
 		AimDownSights();
 
 		if (Input.GetButtonDown("Fire1") && canShoot == true)
