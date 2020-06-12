@@ -50,6 +50,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitPoints: 50
+  healthText: {fileID: 0}
+  damagedUI: {fileID: 0}
 --- !u!114 &5233719393756799175
 MonoBehaviour:
   m_ObjectHideFlags: 0
