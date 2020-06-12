@@ -48,7 +48,7 @@ public class Weapon : MonoBehaviour
 
 	void Update()
 	{
-		ammoText.text = ammoHandler.FetchAmmoAmount(ammoType).ToString();
+		DisplayAmmoToHud();
 
 		AimDownSights();
 
@@ -56,6 +56,11 @@ public class Weapon : MonoBehaviour
 		{
 			StartCoroutine(Shoot());
 		}
+	}
+
+	private void DisplayAmmoToHud()
+	{
+		ammoText.text = ammoHandler.FetchAmmoAmount(ammoType).ToString();
 	}
 
 	private void AimDownSights()
