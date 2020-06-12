@@ -7,6 +7,7 @@ public class PlayerHealth : MonoBehaviour
 {
 	[SerializeField] float hitPoints;
 	[SerializeField] TextMeshProUGUI healthText;
+	[SerializeField] DamageDisplay damagedUI;
 
 	private void Update()
 	{
@@ -22,6 +23,7 @@ public class PlayerHealth : MonoBehaviour
 	{
 		hitPoints -= enemyDamage;
 		print(hitPoints);
+		damagedUI.DisplayBlood();
 
 		if(hitPoints <= 0)
 		{
